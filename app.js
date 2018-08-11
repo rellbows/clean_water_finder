@@ -16,7 +16,7 @@ app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/static', express.static('public')); // where static .js files are served
 app.set('view engine', 'handlebars');
-app.set('port', 3000);
+app.set('port', process.argv[2]); // pulls port # from command line argument
 app.set('mysql', mysql);
 
 //brings up homepage
