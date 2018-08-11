@@ -1,0 +1,10 @@
+var mysql = require('mysql');
+var pool = mysql.createPool({
+  connectionLimit : 10,
+  host            : '[address of host here...]', // change accordingly
+  user            : '[user name here...]]', // change accordingly
+  password        : '[password here...]', // change accordingly
+  database        : '[database name here...]]' // change accordingly
+});
+
+module.exports.pool = pool;

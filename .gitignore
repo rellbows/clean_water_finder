@@ -1,0 +1,8 @@
+# ignore folder with node packages
+node_modules/
+
+# ignore locked npm package file
+package.json.locked
+
+# ignore db config file w/ sensitive password/db info
+dbcon.js

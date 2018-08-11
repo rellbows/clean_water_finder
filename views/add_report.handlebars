@@ -1,0 +1,26 @@
+<h1>Submit Clean Water Report</h1>
+<form name='submit_report' action='/submit_report' method='post'>
+	Address:<br>
+	<input type='text' name='address'><br>
+
+	City:<br>
+	<input type='text' name='city'><br>
+
+	State:<br>
+	<select name='states'>
+	{{#each states}}
+		<option value='{{abbreviation}}'>{{name}}</option>
+	{{/each}}
+	</select><br>
+
+	Zip:<br>
+	<input type='text' name='zip'><br>
+
+	Price:<br>
+	<input type='text' name='price'><br>
+
+	Measure:<br>
+	<input type='text' name='measure'><br>
+
+	<input type='submit' id='submit_report' value='Submit Clean Water Report'>
+</form>
