@@ -1,5 +1,5 @@
 <h1>Submit Clean Water Report</h1>
-<form name='submit_report' action='/submit_report' method='post'>
+<form name='submit_report' action='/add_report' method='post'>
 	Address:<br>
 	<input type='text' name='address'><br>
 
@@ -19,8 +19,35 @@
 	Price:<br>
 	<input type='text' name='price'><br>
 
+	Quantity:<br>
+	<input type='text' name='quantity'><br>
+
 	Measure:<br>
 	<input type='text' name='measure'><br>
 
-	<input type='submit' id='submit_report' value='Submit Clean Water Report'>
+	<input type='submit' id='add_report' value='Submit Clean Water Report'>
 </form>
+
+<h1>Current Clean Water Reports</h1>
+<table>
+	<thead>
+		<td>Address</td>
+		<td>City</td>
+		<td>State</td>
+		<td>Zip</td>
+		<td>Price</td>
+		<td>Quantity</td>
+		<td>Measure</td>
+	</thead>
+	{{#each reports}}
+	<tr>
+		<td>{{address}}</td>
+		<td>{{city}}</td>
+		<td>{{state}}</td>
+		<td>{{zip}}</td>
+		<td>{{price}}</td>
+		<td>{{quantity}}</td>
+		<td>{{Measure}}</td>
+	</tr>
+	{{/each}}
+</table>

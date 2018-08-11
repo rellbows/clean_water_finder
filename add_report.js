@@ -2,6 +2,19 @@ module.exports = function(){
 	var express = require('express');
 	var router = express.Router();
 
+	//pulls current water report data from db
+	function getReports(res, mysql, context, complete){
+		mysql.pool.query('SELECT reportID, address, city, state, zip, price, quantity, Measure FROM reports', function(error, results, fields){
+			if(error){
+				console.log(JSON.stringify(error));
+				res.write(JSON.stringify(error));
+				res.end();
+			}
+			context.reports = results;
+			complete();
+		})
+	}
+
 	//adds state names and abbreviations to context
 	function getStates(context, complete){
 			context.states = [
@@ -249,14 +262,33 @@ module.exports = function(){
 	router.get('/', function(req, res){
 		var callbackCount = 0;
 		var context = {};
+		var mysql = req.app.get('mysql');
 		context.jsscripts = [];
+		getReports(res, mysql, context, complete);
 		getStates(context, complete);
 		function complete(){
 			callbackCount++;
-			if(callbackCount >= 1){
+			if(callbackCount >= 2){
 				res.render('add_report.handlebars', context);
 			}
 		}
+	});
+
+	//adds a report to the db
+	router.post('/', function(req, res){
+		console.log(req.body.quantity);
+		var mysql = req.app.get('mysql');
+		var sql = 'INSERT INTO reports (address, city, state, zip, price, quantity, Measure) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		var inserts = [req.body.address, req.body.city, req.body.states, req.body.zip, req.body.price, req.body.quantity, req.body.measure];
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+			if(error){
+				console.log(JSON.stringify(error));
+				res.write(JSON.stringify(error));
+				res.end();
+			}else{
+				res.redirect('/add_report');
+			}
+		});
 	});
 
 	return router;
