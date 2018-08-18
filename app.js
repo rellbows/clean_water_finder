@@ -1,7 +1,7 @@
-// Program Name: LOTR DB App
-// Filename: lotr_app.js
+// Program Name: Clean Water Finder
+// Filename: app.js
 // Author: Ryan Ellis
-// Description: Main node.js script for the LOTR database web app
+// Description: Main node.js script for the clean water finder web app.git 
 
 // SERVER SIDE CODE
 
@@ -24,8 +24,11 @@ app.get('/', function(req, res){
 	res.render('home.handlebars')
 });
 
-//brings up characters page
+//brings up add_report page
 app.use('/add_report', require('./add_report.js'));
+
+//brindgs up filter_reports page
+app.use('/filter_reports', require('./filter_reports.js'));
 
 //bad url route
 app.use(function(req, res){

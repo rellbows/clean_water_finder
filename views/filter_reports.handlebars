@@ -1,0 +1,48 @@
+<h1>Filter Clean Water Reports</h1>
+<form name='filter_reports' action='/filter_reports' method='post'>
+
+	State:<br>
+	<select name='states'>
+	{{#each states}}
+		<option value='{{abbreviation}}'>{{name}}</option>
+	{{/each}}
+	</select><br>
+
+	Zip:<br>
+	<input type='text' name='zip'><br>
+
+	Max Price:<br>
+	<input type='text' name='price'><br>
+
+	Min Quantity:<br>
+	<input type='text' name='quantity'><br>
+
+	Measure:<br>
+	<input type='text' name='measure'><br>
+
+	<input type='submit' id='filter_reports' value='Filter Clean Water Reports'>
+</form>
+
+<h1>Filter Clean Water Reports Results</h1>
+<table>
+	<thead>
+		<td>Address</td>
+		<td>City</td>
+		<td>State</td>
+		<td>Zip</td>
+		<td>Price</td>
+		<td>Quantity</td>
+		<td>Measure</td>
+	</thead>
+	{{#each reports}}
+	<tr>
+		<td>{{address}}</td>
+		<td>{{city}}</td>
+		<td>{{state}}</td>
+		<td>{{zip}}</td>
+		<td>{{price}}</td>
+		<td>{{quantity}}</td>
+		<td>{{Measure}}</td>
+	</tr>
+	{{/each}}
+</table>
